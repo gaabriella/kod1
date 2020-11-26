@@ -1,17 +1,4 @@
 # -*- coding: utf-8 -*-
-import math
-
-
-def normalize_angle(angle):
-    if angle >= 0:
-        return angle
-    else:
-        return 400 + angle
-
-
-def radians_to_grads(angle_in_radians):
-    return angle_in_radians * (200/math.pi)
-
 
 class Point(object):
 
@@ -32,14 +19,3 @@ class Point(object):
             # długość 3d
             return ((other.x - self.x) ** 2 + (other.y - self.y) ** 2 + (other.z - self.z) ** 2) ** 0.5
 
-    def get_azimuth(self, other):
-        delta_x = other.x - self.x
-        delta_y = other.y - self.y
-        angle = radians_to_grads(math.atan2(delta_y, delta_x))
-        return normalize_angle(angle)
-
-    def get_angle(self, left, right):
-        azimuth_left = self.get_azimuth(left)
-        azimuth_right = self.get_azimuth(right)
-        angle = azimuth_right - azimuth_left
-        return normalize_angle(angle)
